@@ -1,3 +1,8 @@
-require_relative "hangman"
+#This file is responsible for human interaction
 
-Hangman.new()
+require "./hangman"
+
+game = Hangman.new()
+#write game loop, no logic
+p game.word_extractor
+p game.array_word
