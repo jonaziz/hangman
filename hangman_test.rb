@@ -32,7 +32,7 @@ class HangmanTest < Test::Unit::TestCase
 	def test_guess_guessing_check
 		h = Hangman.new("Berlin")
 		h.array_word
-		h.guess("e")
+		h.guess!("e")
 
 		assert_equal [1], h.result_index
 	end
@@ -41,9 +41,8 @@ class HangmanTest < Test::Unit::TestCase
 		h = Hangman.new("yellow")
 		h.array_word
 		h.workingboard
-		h.guess("l")
+		h.guess!("l")
 		h.result_index
-		h.update_board
 
 		puts h.wboard.inspect
 		assert_equal "_ _ l l _ _", h.board
@@ -54,7 +53,7 @@ class HangmanTest < Test::Unit::TestCase
 		h.array_word
 		h.guesses = ["e"]
 		h.workingboard
-		h.guess("e")
+		h.guess!("e")
 
 		puts h.wboard.inspect
 		assert_equal ["e"], h.guesses

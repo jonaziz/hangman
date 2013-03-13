@@ -30,12 +30,12 @@ attr_reader :board, :result_index
 		return @wboard.join(" ")
 	end
 
-	def guess(guess)
+	def guess!(letter)
 		# compact eliminates "nil"s
-		@guess = guess
+		@guess = letter
 		if guesses.include?(@guess)
 			puts "Please enter a different guess."
-		elsif guess.class == String && guess.length == 1
+		elsif guess.class == String && @guess.length == 1
 			if @word_arrayed.include?(@guess)
 				good_guess
 			else
@@ -49,7 +49,8 @@ attr_reader :board, :result_index
 
 	def good_guess
 		@guesses << @guess
-		@result_index = @word_arrayed.map.with_index {|letter, index| index if letter == guess}.compact
+		@result_index = @word_arrayed.map.with_index {|letter, index| index if letter == @guess}.compact
+		update_board
 	end
 
 	def bad_guess
