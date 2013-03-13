@@ -3,12 +3,11 @@ class Hangman
 	#It is only concerned with one run through of the game
 	#It is not responsible for human interaction
 
-attr_accessor :wordlist, :word, :board, :chances
+attr_accessor :wordlist, :word, :chances
 
   	def initialize()
    	 	puts "Hangman game!"   
  		@word = ""
- 		@board = board
  		@chances = 8
  		@wordlist = ["Berlin", "Toronto", "London", "Santiago", "Manhattan", "Yukon", "Edmonton", "Saskatoon", "Saskatchewan", 
  			"Washington", "California", "Cupertino", "Louisiana", "Mississippi", "Mississauga", "Tiguana", "Cancun", "Havana", "Torino", "Ecuador", "Bejing"]  
@@ -23,6 +22,10 @@ attr_accessor :wordlist, :word, :board, :chances
 	def array_word
 		@word_arrayed = @word.split("")
 		return @word_arrayed
+	end
+
+	def board
+		('_ ' * @word.length).strip 
 	end
 
 end
