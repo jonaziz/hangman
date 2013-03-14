@@ -36,7 +36,7 @@ attr_reader :board, :result_index, :array_word
 	def guess!(letter)
 		@guess = letter.downcase
 		if guesses.include?(@guess)
-			puts "Please enter a different guess, Jack!"
+			puts "Please enter a different guess,"
 		elsif (guess.class == String) && (@guess.length == 1) && (true if guess.match(/[a-z]/) != nil)
 			if @word_arrayed.include?(@guess)
 				good_guess
@@ -44,7 +44,7 @@ attr_reader :board, :result_index, :array_word
 				bad_guess
 			end
 		else
-			puts "Please enter a one letter string."
+			puts "Please enter one letter."
 		end
 	end
 

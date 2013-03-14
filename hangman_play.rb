@@ -6,7 +6,7 @@ class HangmanPlay
 
 	def self.word_selector
 		wordlist = ["Berlin", "Toronto", "London", "Santiago", "Manhattan", "Yukon", "Edmonton", "Saskatoon", "Saskatchewan", 
- 			"Washington", "California", "Cupertino", "Louisiana", "Mississippi", "Mississauga", "Tiguana", "Cancun", "Havana", "Torino", "Ecuador", "Bejing"]  
+ 			"Washington", "California", "Cupertino", "Louisiana", "Mississippi", "Mississauga", "Tijuana", "Cancun", "Havana", "Torino", "Ecuador", "Bejing"]  
 		@@secretword = wordlist[rand(wordlist.length)]
 	end
 
@@ -41,7 +41,7 @@ class HangmanPlay
 		puts "-----------------------------------"
 		puts ""
 		puts ""
-		puts "Enter guess:"
+		puts "Guess:"
 		letter = gets.chomp
 		@@game.guess!(letter)
 		puts ""
