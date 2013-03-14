@@ -43,8 +43,11 @@ attr_reader :board, :result_index, :array_word
 			else
 				bad_guess
 			end
+		elsif @guess == @word
+			@wboard = @word_arrayed
 		else
-			puts "Please enter one letter."
+			puts "Please enter a valid guess of one letter or one word."
+			@chances -= 1
 		end
 	end
 
