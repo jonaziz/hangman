@@ -37,7 +37,7 @@ attr_reader :board, :result_index, :array_word
 		@guess = letter.downcase
 		if guesses.include?(@guess)
 			puts "Please enter a different guess,"
-		elsif (guess.class == String) && (@guess.length == 1) && (true if guess.match(/[a-z]/) != nil)
+		elsif (guess.class == String) && (@guess.length == 1) && (guess.match(/[a-z]/) != nil)
 			if @word_arrayed.include?(@guess)
 				good_guess
 			else
@@ -73,7 +73,7 @@ attr_reader :board, :result_index, :array_word
 	end
 
 	def lost?
-		if @chances < 1 
+		if @chances <= 0 
 			return true
 		end
 	end

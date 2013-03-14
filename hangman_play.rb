@@ -7,7 +7,7 @@ class HangmanPlay
 	def self.word_selector
 		wordlist = ["Berlin", "Toronto", "London", "Santiago", "Manhattan", "Yukon", "Edmonton", "Saskatoon", "Saskatchewan", 
  			"Washington", "California", "Cupertino", "Louisiana", "Mississippi", "Mississauga", "Tijuana", "Cancun", "Havana", "Torino", "Ecuador", "Bejing"]  
-		@@secretword = wordlist[rand(wordlist.length)]
+		@@secretword = wordlist.sample
 	end
 
 	#Starts the hangman game
