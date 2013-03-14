@@ -33,7 +33,7 @@ class HangmanPlay
 		puts ""
 		puts "Board: #{@@game.board}"
 		puts ""
-		puts "Previous Guesses: #{@@game.guesses}"
+		puts "Previous Guesses: #{@@game.guesses.join(", ")}"
 		puts ""
 		puts ""
 		puts "Chances: #{@@game.chances}"
