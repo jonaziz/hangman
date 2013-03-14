@@ -59,20 +59,25 @@ class HangmanTest < Test::Unit::TestCase
 		assert_equal ["e"], h.guesses
 	end
 
-	def test_game_ends_when_last_letter_is_guessed_correctly
-		word = "Santiago"
-		board = "s a n t i a g _"
-		h = Hangman.new(word)
-		h.board = board
+	def test_won_when_last_letter_is_guessed_correctly
+		h = Hangman.new("Santiago")		
+		wboard = ["s", "a", "n", "t", "i", "a", "g", "_"]
 		h.guess!('o')
-		assert hangman.won?
+
+		assert h.won?
+	end
+
+	def test_lost_when_last_chance_is_used_incorrectly
+		h = Hangman.new("Santiago")		
+		wboard = ["s", "a", "_", "t", "i", "a", "g", "_"]
+		h.guess!('v')
+		
+		assert h.won?	
 	end
 
   	def test_word_conversion
   		h = Hangman.new("Berlin")
   		h.array_word
-  		# h.word_extractor
-  		# h.array_word
   		assert_equal h.word[0], h.word_arrayed[0]
   	end
 end

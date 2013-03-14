@@ -4,7 +4,7 @@ class Hangman
 	#It is not responsible for human interaction
 
 attr_accessor :word, :chances, :wboard, :word_arrayed, :guesses, :guess
-attr_reader :board, :result_index
+attr_reader :board, :result_index, :array_word
 
   	def initialize(word)
    	 	puts "Hangman game!"   
@@ -31,11 +31,10 @@ attr_reader :board, :result_index
 	end
 
 	def guess!(letter)
-		# compact eliminates "nil"s
-		@guess = letter
+		@guess = letter.downcase
 		if guesses.include?(@guess)
 			puts "Please enter a different guess."
-		elsif guess.class == String && @guess.length == 1
+		elsif (guess.class == String) && (@guess.length == 1) && (true if guess.match(/[a-z]/) != nil)
 			if @word_arrayed.include?(@guess)
 				good_guess
 			else
@@ -44,23 +43,39 @@ attr_reader :board, :result_index
 		else
 			puts "Please enter a one letter string."
 		end
-		#@guesses << @guess unless guesses.include?(@guess)
 	end
 
 	def good_guess
 		@guesses << @guess
+		# compact eliminates "nil"s
 		@result_index = @word_arrayed.map.with_index {|letter, index| index if letter == @guess}.compact
 		update_board
+		 won?
 	end
 
 	def bad_guess
 		@guesses << @guess
 		@chances -= 1
+		lost?
 	end
 
 	def update_board
 		@result_index.each do |matchindex|
 			@wboard[matchindex] = @guess 	
+		end
+	end
+
+	def won?
+		if @wboard == word_arrayed
+			puts "You won!"
+			return true
+		end
+	end
+
+	def lost?
+		if @wboard != word_arrayed && @changes == 0
+			puts "Game over. Please play again."
+			return false
 		end
 	end
 
