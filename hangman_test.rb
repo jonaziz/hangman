@@ -81,9 +81,3 @@ class HangmanTest < Test::Unit::TestCase
   		assert_equal h.word[0], h.word_arrayed[0]
   	end
 end
-
-#test_word_length_accuracy
-
-#test_letter_match
-
-#test_position_match

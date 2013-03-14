@@ -7,7 +7,8 @@ attr_accessor :word, :chances, :wboard, :word_arrayed, :guesses, :guess
 attr_reader :board, :result_index, :array_word
 
   	def initialize(word)
-   	 	puts "Hangman game!"   
+   	 	puts "Welcome to our hangman game! Please guess a letter to start"
+   	 	puts "-----------------------------------"
  		@word = word.downcase
  		@chances = 8
   		@word_arrayed =[]
@@ -15,6 +16,8 @@ attr_reader :board, :result_index, :array_word
   		@guesses = []
   		@result_index = []
   		@guess = ""
+  		array_word
+  		workingboard
   	end
  
  	def array_word
@@ -50,13 +53,11 @@ attr_reader :board, :result_index, :array_word
 		# compact eliminates "nil"s
 		@result_index = @word_arrayed.map.with_index {|letter, index| index if letter == @guess}.compact
 		update_board
-		 won?
 	end
 
 	def bad_guess
 		@guesses << @guess
 		@chances -= 1
-		lost?
 	end
 
 	def update_board
@@ -67,15 +68,13 @@ attr_reader :board, :result_index, :array_word
 
 	def won?
 		if @wboard == word_arrayed
-			puts "You won!"
 			return true
 		end
 	end
 
 	def lost?
-		if @wboard != word_arrayed && @changes == 0
-			puts "Game over. Please play again."
-			return false
+		if @chances < 1 
+			return true
 		end
 	end
 

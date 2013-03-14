@@ -4,15 +4,24 @@ require_relative "hangman"
 
 class HangmanPlay
 
+	def self.word_selector
+		wordlist = ["Berlin", "Toronto", "London", "Santiago", "Manhattan", "Yukon", "Edmonton", "Saskatoon", "Saskatchewan", 
+ 			"Washington", "California", "Cupertino", "Louisiana", "Mississippi", "Mississauga", "Tiguana", "Cancun", "Havana", "Torino", "Ecuador", "Bejing"]  
+		@@secretword = wordlist[rand(wordlist.length)]
+	end
+
 	#Starts the hangman game
 	def self.start
-		@@game = Hangman.new(#word)
-		while !@@game.game_over?
+		self.word_selector
+		@@game = Hangman.new(@@secretword)
+		while !@@game.won? && !@@game.lost?
 			self.show_round
 		end
-
-		p game.word_extractor
-		p game.array_word
+		if @@game.won?
+			puts "Congratulations, you found out the word is #{@@game.word}"
+		else
+			puts "Game over. Please play again."
+		end
 	end
 
 	# print out the first round of the game
@@ -21,16 +30,22 @@ class HangmanPlay
 	# - ask for letter
 	def self.show_round
 		puts ""
-		puts "Your secret word is #{@@game.word}"
+		puts ""
 		puts "Board: #{@@game.board}"
 		puts ""
-		puts "Guessed: "
+		puts "Previous Guesses: #{@@game.guesses}"
 		puts ""
 		puts ""
 		puts "Chances: #{@@game.chances}"
 		puts ""
+		puts "-----------------------------------"
+		puts ""
+		puts ""
 		puts "Enter guess:"
 		letter = gets.chomp
-		puts "The letter is: #{letter}"
+		@@game.guess!(letter)
+		puts ""
+		puts ""
+		puts "-----------------------------------"
 	end
 end
